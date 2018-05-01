@@ -27,4 +27,8 @@ public class SudokuElement {
 
         return possibleValues;
     }
+
+    public void setValue(int value) {
+        this.value = value;
+    }
 }
