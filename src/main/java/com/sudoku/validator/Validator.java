@@ -1,5 +1,6 @@
 package com.sudoku.validator;
 
+import com.sudoku.board.elements.Block;
 import com.sudoku.board.elements.SudokuBoard;
 import com.sudoku.board.elements.SudokuElement;
 import com.sudoku.board.elements.SudokuRow;
@@ -81,11 +82,11 @@ public class Validator {
         Block blockY = Block.evaluateBlock(rowIndex);
         Block blockX = Block.evaluateBlock(elementIndex);
 
-        for (int possibleValue : blockY.possibleValues) {
+        for (int possibleValue : blockY.getPossibleValues()) {
 
             SudokuRow sudokuRow = sudokuBoard.getSudokuRows().get(possibleValue);
 
-            for (int i : blockX.possibleValues) {
+            for (int i : blockX.getPossibleValues()) {
 
                 if (possibleValue == rowIndex && i == elementIndex) {
                     continue;
@@ -98,30 +99,5 @@ public class Validator {
 
         }
         return true;
-    }
-
-    private enum Block {
-        ONE(new int[]{0, 1, 2}),
-        TWO(new int[]{3, 4, 5}),
-        THREE(new int[]{6, 7, 8});
-
-        Block(int[] possibleValues) {
-            this.possibleValues = possibleValues;
-        }
-
-        private int[] possibleValues;
-
-        public static Block evaluateBlock(int value) {
-
-            for (Block block : Block.values()) {
-                for (int possibleValue : block.possibleValues) {
-                    if (possibleValue == value) {
-                        return block;
-                    }
-                }
-
-            }
-            return null;
-        }
     }
 }
