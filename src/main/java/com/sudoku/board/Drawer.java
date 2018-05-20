@@ -6,23 +6,49 @@ public class Drawer {
 
     public String draw(SudokuBoard board) {
 
-        String result = "";
+        StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < board.getSudokuRows().size(); i++) {
 
-            result += "|";
+            sb.append(drawHorizontalLine(board.getSudokuRows().get(i).getSudokuElements().size()));
 
             for (int k = 0; k < board.getSudokuRows().get(0).getSudokuElements().size(); k++) {
 
-                if (board.getSudokuRows().get(i).getSudokuElements().get(k).getValue() == -1) {
-                    result += " ";
-                } else {
-                    result += board.getSudokuRows().get(i).getSudokuElements().get(k).getValue();
+                if (k == 0) {
+                    sb.append("|");
                 }
-                result += "|";
+
+                if (board.getSudokuRows().get(i).getSudokuElements().get(k).getValue() == -1) {
+                    sb.append("   |");
+
+                } else {
+                    sb.append(" ");
+                    sb.append(board.getSudokuRows().get(i).getSudokuElements().get(k).getValue());
+                    sb.append(" |");
+                }
             }
-            result += "\n";
+            sb.append("\n");
+
+            if(i == board.getSudokuRows().size() - 1) {
+                sb.append(drawHorizontalLine(board.getSudokuRows().get(i).getSudokuElements().size()));
+            }
         }
-        return result;
+        return sb.toString();
+    }
+
+    private StringBuilder drawHorizontalLine(int elements) {
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < elements; i++) {
+
+            if(i == 0) {
+                sb.append("+---+");
+            }
+            else {
+                sb.append("---+");
+            }
+        }
+        return sb.append("\n");
     }
 }
