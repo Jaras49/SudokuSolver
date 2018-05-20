@@ -8,6 +8,7 @@ public class SudokuElement {
 
     private static final int EMPTY = -1;
     private int value;
+    private boolean isEmpty = true;
     private Set<Integer> possibleValues;
 
     public SudokuElement() {
@@ -28,8 +29,13 @@ public class SudokuElement {
         return possibleValues;
     }
 
+    public boolean isEmpty() {
+        return isEmpty;
+    }
+
     public void setValue(int value) {
         this.value = value;
+        isEmpty = false;
         possibleValues.remove(value);
     }
 }
