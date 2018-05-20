@@ -21,13 +21,15 @@ public class SudokuBoardInitializerTestSuite {
 
         //When
         SudokuBoard sudokuBoard = initializer.createBoard(9);
+        sudokuBoard.getSudokuRows().get(1).getSudokuElements().get(1).setValue(2);
 
         //Then
         assertEquals(size, sudokuBoard.getSudokuRows().size());
         assertEquals(size, sudokuBoard.getSudokuRows().get(8).getSudokuElements().size());
 
         assertEquals(-1, sudokuBoard.getSudokuRows().get(1).getSudokuElements().get(8).getValue());
-        assertEquals(new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9)),
-                sudokuBoard.getSudokuRows().get(0).getSudokuElements().get(0).getPossibleValues());
+        assertEquals(2, sudokuBoard.getSudokuRows().get(1).getSudokuElements().get(1).getValue());
+        assertEquals(new HashSet<>(Arrays.asList(1, 3, 4, 5, 6, 7, 8, 9)),
+                sudokuBoard.getSudokuRows().get(1).getSudokuElements().get(1).getPossibleValues());
     }
 }
