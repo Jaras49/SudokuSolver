@@ -33,7 +33,7 @@ public class Validator {
                 if (!checkRow(i, j, value)) {
                     return false;
                 }
-                if (!checkColum(i, j, value)) {
+                if (!checkColumn(i, j, value)) {
                     return false;
                 }
                 if (!checkBlock(i, j, value)) {
@@ -60,7 +60,7 @@ public class Validator {
         return true;
     }
 
-    private boolean checkColum(int rowIndex, int elementIndex, int value) {
+    private boolean checkColumn(int rowIndex, int elementIndex, int value) {
 
         List<SudokuRow> sudokuRows = sudokuBoard.getSudokuRows();
 
