@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public abstract class AbstractCheck {
+abstract class AbstractCheck implements Check {
 
     protected SudokuBoard board;
 
@@ -40,6 +40,23 @@ public abstract class AbstractCheck {
 
     protected abstract boolean checkIfIsAmongPossibleValues(int rowIndex, int elementIndex, int possibleValue);
 
-    protected abstract void deleteFromPossibleValues
-            (List<Integer> listToDelete, int rowIndex, int elementIndex) throws InvalidSudokuException;
+    protected void deleteFromPossibleValues
+            (List<Integer> listToDelete, int rowIndex, int elementIndex) throws InvalidSudokuException {
+
+        Set<Integer> possibleValues = board.getSudokuRows().get(rowIndex).getSudokuElements().get(elementIndex).getPossibleValues();
+
+        for (Integer integer : listToDelete) {
+
+            if (possibleValues.size() == 1 && possibleValues.contains(integer)) {
+
+                throw new InvalidSudokuException();
+            }
+            possibleValues.remove(integer);
+
+            if (possibleValues.size() == 1) {
+                board.getSudokuRows().get(rowIndex).getSudokuElements().get(elementIndex).setValue(possibleValues.iterator().next());
+            }
+        }
+    }
 }
+

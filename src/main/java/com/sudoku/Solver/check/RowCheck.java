@@ -1,6 +1,5 @@
 package com.sudoku.Solver.check;
 
-import com.sudoku.Solver.check.exception.InvalidSudokuException;
 import com.sudoku.board.elements.SudokuElement;
 
 import java.util.List;
@@ -46,24 +45,5 @@ public class RowCheck extends AbstractCheck implements Check {
             }
         }
         return false;
-    }
-
-    @Override
-    protected void deleteFromPossibleValues(List<Integer> listToDelete, int rowIndex, int elementIndex) throws InvalidSudokuException {
-
-        Set<Integer> possibleValues = board.getSudokuRows().get(rowIndex).getSudokuElements().get(elementIndex).getPossibleValues();
-
-        for (Integer integer : listToDelete) {
-
-            if (possibleValues.size() == 1 && possibleValues.contains(integer)) {
-
-                throw new InvalidSudokuException();
-            }
-            possibleValues.remove(integer);
-
-            if (possibleValues.size() == 1) {
-                board.getSudokuRows().get(rowIndex).getSudokuElements().get(elementIndex).setValue(possibleValues.iterator().next());
-            }
-        }
     }
 }

@@ -1,11 +1,49 @@
 package com.sudoku.Solver.check;
 
-import com.sudoku.board.elements.SudokuBoard;
+import com.sudoku.board.elements.SudokuRow;
 
-public class ColumnCheck implements Check {
+import java.util.List;
+import java.util.Set;
+
+public class ColumnCheck extends AbstractCheck implements Check {
 
     @Override
-    public SudokuBoard check(SudokuBoard board) {
-        return null;
+    protected boolean checkIfIsTaken(int rowIndex, int elementIndex, int possibleValue) {
+
+        List<SudokuRow> sudokuRows = board.getSudokuRows();
+
+        for (int i = 0; i < sudokuRows.size(); i++) {
+
+            if (i == rowIndex) {
+                continue;
+            }
+
+            int value = sudokuRows.get(i).getSudokuElements().get(elementIndex).getValue();
+
+            if (value == possibleValue) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    protected boolean checkIfIsAmongPossibleValues(int rowIndex, int elementIndex, int possibleValue) {
+
+        List<SudokuRow> sudokuRows = board.getSudokuRows();
+
+        for (int i = 0; i < sudokuRows.size(); i++) {
+
+            if (i == rowIndex) {
+                continue;
+            }
+
+            Set<Integer> possibleValues = sudokuRows.get(i).getSudokuElements().get(elementIndex).getPossibleValues();
+
+            if (possibleValues.contains(possibleValue)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
