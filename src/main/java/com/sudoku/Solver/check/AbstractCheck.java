@@ -30,7 +30,7 @@ abstract class AbstractCheck implements Check {
             }
         }
         if (value != -1) {
-            board.getSudokuRows().get(rowIndex).getSudokuElements().get(elementIndex).setValue(value);
+            board.setElementValue(rowIndex, elementIndex, value);
         }
         deleteFromPossibleValues(listToDeleteFromPossibleValues, rowIndex, elementIndex);
         return board;
@@ -54,7 +54,7 @@ abstract class AbstractCheck implements Check {
             possibleValues.remove(integer);
 
             if (possibleValues.size() == 1) {
-                board.getSudokuRows().get(rowIndex).getSudokuElements().get(elementIndex).setValue(possibleValues.iterator().next());
+                board.setElementValue(rowIndex, elementIndex, possibleValues.iterator().next());
             }
         }
     }

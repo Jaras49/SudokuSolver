@@ -16,7 +16,7 @@ public class RowCheckTestSuite {
         SudokuBoard board = new SudokuBoardInitializer().createBoard(4);
         Check check = new RowCheck();
 
-        board.getSudokuRows().get(0).getSudokuElements().get(0).setValue(4);
+        board.setElementValue(0, 0, 4);
         board.getSudokuRows().get(0).getSudokuElements().get(1).getPossibleValues().clear();
         board.getSudokuRows().get(0).getSudokuElements().get(1).getPossibleValues().add(4);
         board.getSudokuRows().get(0).getSudokuElements().get(1).getPossibleValues().add(1);

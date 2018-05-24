@@ -35,7 +35,7 @@ public class SudokuElement {
         return isEmpty;
     }
 
-    public void setValue(int value) {
+    void setValue(int value) {
         this.value = value;
         isEmpty = false;
         possibleValues.clear();

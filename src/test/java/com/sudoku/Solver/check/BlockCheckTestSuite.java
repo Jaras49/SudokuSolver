@@ -16,7 +16,7 @@ public class BlockCheckTestSuite {
         SudokuBoard board = new SudokuBoardInitializer().createBoard(4);
         Check check = new BlockCheck();
 
-        board.getSudokuRows().get(0).getSudokuElements().get(0).setValue(5);
+        board.setElementValue(0, 0, 5);
         board.getSudokuRows().get(1).getSudokuElements().get(1).getPossibleValues().clear();
         board.getSudokuRows().get(1).getSudokuElements().get(1).getPossibleValues().add(5);
         board.getSudokuRows().get(1).getSudokuElements().get(1).getPossibleValues().add(8);

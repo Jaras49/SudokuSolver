@@ -21,7 +21,7 @@ public class SudokuBoardInitializerTestSuite {
 
         //When
         SudokuBoard sudokuBoard = initializer.createBoard(9);
-        sudokuBoard.getSudokuRows().get(1).getSudokuElements().get(1).setValue(2);
+        sudokuBoard.setElementValue(1, 1, 2);
 
         //Then
         assertEquals(size, sudokuBoard.getSudokuRows().size());

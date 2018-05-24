@@ -20,10 +20,10 @@ public class ValidatorTestSuite {
     public void shouldValidateBoard() {
 
         //Given
-        sudokuBoard.getSudokuRows().get(0).getSudokuElements().get(0).setValue(1);
-        sudokuBoard.getSudokuRows().get(0).getSudokuElements().get(1).setValue(4);
-        sudokuBoard.getSudokuRows().get(1).getSudokuElements().get(1).setValue(6);
-        sudokuBoard.getSudokuRows().get(8).getSudokuElements().get(1).setValue(1);
+        sudokuBoard.setElementValue(0, 0, 1);
+        sudokuBoard.setElementValue(0, 1, 4);
+        sudokuBoard.setElementValue(1, 1, 6);
+        sudokuBoard.setElementValue(8, 1, 1);
 
         //When
         boolean validateResult = new Validator(sudokuBoard).validate();
@@ -36,10 +36,10 @@ public class ValidatorTestSuite {
     public void shouldNotValidateBoard() {
 
         //Given
-        sudokuBoard.getSudokuRows().get(0).getSudokuElements().get(0).setValue(1);
-        sudokuBoard.getSudokuRows().get(0).getSudokuElements().get(1).setValue(1);
-        sudokuBoard.getSudokuRows().get(1).getSudokuElements().get(0).setValue(1);
-        sudokuBoard.getSudokuRows().get(1).getSudokuElements().get(1).setValue(1);
+        sudokuBoard.setElementValue(0, 0, 1);
+        sudokuBoard.setElementValue(0, 1, 1);
+        sudokuBoard.setElementValue(1, 0, 1);
+        sudokuBoard.setElementValue(1, 1, 1);
 
         //When
         boolean validateResult = new Validator(sudokuBoard).validate();

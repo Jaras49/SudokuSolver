@@ -17,7 +17,7 @@ public class ColumnCheckTestSuite {
         SudokuBoard board = new SudokuBoardInitializer().createBoard(3);
         Check check = new ColumnCheck();
 
-        board.getSudokuRows().get(0).getSudokuElements().get(0).setValue(3);
+        board.setElementValue(0, 0, 3);
         board.getSudokuRows().get(1).getSudokuElements().get(0).getPossibleValues().clear();
         board.getSudokuRows().get(1).getSudokuElements().get(0).getPossibleValues().add(4);
         board.getSudokuRows().get(1).getSudokuElements().get(0).getPossibleValues().add(3);
