@@ -38,13 +38,16 @@ public class SudokuBoard extends Prototype {
             for (int j = 0; j < sudokuElements.size(); j++) {
 
                 clonedBoard.sudokuRows.get(i).getSudokuElements().add(j, new SudokuElement());
-                int value = sudokuElements.get(i).getValue();
-                Set<Integer> possibleValues = sudokuElements.get(i).getPossibleValues();
+
+                int value = sudokuElements.get(j).getValue();
+                Set<Integer> possibleValues = sudokuElements.get(j).getPossibleValues();
+
                 clonedBoard.sudokuRows.get(i).getSudokuElements().get(j).getPossibleValues().clear();
                 for (Integer possibleValue : possibleValues) {
                     clonedBoard.sudokuRows.get(i).getSudokuElements().get(j).getPossibleValues().add(possibleValue);
                 }
-                clonedBoard.sudokuRows.get(i).getSudokuElements().get(j).setValue(value);
+                    clonedBoard.sudokuRows.get(i).getSudokuElements().get(j).setValue(value);
+
             }
         }
         return clonedBoard;
@@ -52,31 +55,6 @@ public class SudokuBoard extends Prototype {
 
     public void setElementValue(int rowIndex, int elementIndex, int value) {
         sudokuRows.get(rowIndex).getSudokuElements().get(elementIndex).setValue(value);
-        updateElementsStatus(rowIndex, elementIndex, value);
-    }
-
-    private void updateElementsStatus(int rowIndex, int elementIndex, int value) {
-
-        for (int i = 0; i < sudokuRows.size(); i++) {
-            sudokuRows.get(i).getSudokuElements().get(elementIndex).getPossibleValues().remove(value);
-        }
-
-        for (int i = 0; i < sudokuRows.get(rowIndex).getSudokuElements().size(); i++) {
-            sudokuRows.get(rowIndex).getSudokuElements().get(i).getPossibleValues().remove(value);
-        }
-
-        Block blockY = Block.evaluateBlock(rowIndex);
-        Block blockX = Block.evaluateBlock(elementIndex);
-
-        for (int i : blockY.getPossibleValues()) {
-
-            List<SudokuElement> sudokuElements = sudokuRows.get(i).getSudokuElements();
-
-            for (int j : blockX.getPossibleValues()) {
-
-                sudokuElements.get(j).getPossibleValues().remove(value);
-            }
-        }
     }
 
     @Override
