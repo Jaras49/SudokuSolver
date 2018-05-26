@@ -3,6 +3,7 @@ package com.sudoku.Solver;
 import com.sudoku.board.Drawer;
 import com.sudoku.board.SudokuBoardInitializer;
 import com.sudoku.board.elements.SudokuBoard;
+import com.sudoku.validator.Validator;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -10,12 +11,12 @@ import static org.junit.Assert.*;
 public class SolverTestSuite {
 
     @Test
-    public void shouldSolveSudoku() {
+    public void shouldSolveSudoku() throws CloneNotSupportedException {
 
         //Given
         SudokuBoard board = new SudokuBoardInitializer().createBoard(9);
-        board.getSudokuRows().get(0).getSudokuElements().get(0).setValue(2);
-        board.getSudokuRows().get(1).getSudokuElements().get(2).setValue(1);
+        board.setElementValue(0, 1, 2);
+        board.setElementValue(1, 2, 1);
 
         Solver solver = new Solver(board);
 
@@ -23,7 +24,9 @@ public class SolverTestSuite {
         SudokuBoard solvedBoard = solver.solve();
         System.out.println(new Drawer().draw(solvedBoard));
 
+
         //Then
+        assertTrue(new Validator(solvedBoard).validate());
     }
 
 }
