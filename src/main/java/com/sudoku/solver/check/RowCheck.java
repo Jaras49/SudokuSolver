@@ -1,10 +1,12 @@
-package com.sudoku.Solver.check;
+package com.sudoku.solver.check;
 
 import com.sudoku.board.elements.SudokuElement;
 
 import java.util.List;
 import java.util.Set;
-
+/**@deprecated
+ * This class is deprecated. SolverProcessor has its functions
+ */
 public class RowCheck extends AbstractCheck implements Check {
 
     @Override

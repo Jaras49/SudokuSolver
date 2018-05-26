@@ -1,12 +1,14 @@
-package com.sudoku.Solver.check;
+package com.sudoku.solver.check;
 
-import com.sudoku.Solver.check.exception.InvalidSudokuException;
+import com.sudoku.solver.check.exception.InvalidSudokuException;
 import com.sudoku.board.elements.SudokuBoard;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
+/**@deprecated
+ * This class is deprecated. SolverProcessor has its functions
+ */
 abstract class AbstractCheck implements Check {
 
     protected SudokuBoard board;

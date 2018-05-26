@@ -1,6 +1,6 @@
-package com.sudoku.Solver.check;
+package com.sudoku.solver.check;
 
-import com.sudoku.Solver.check.exception.InvalidSudokuException;
+import com.sudoku.solver.check.exception.InvalidSudokuException;
 import com.sudoku.board.Drawer;
 import com.sudoku.board.SudokuBoardInitializer;
 import com.sudoku.board.elements.SudokuBoard;
