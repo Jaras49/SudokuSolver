@@ -26,7 +26,7 @@ public class ValidatorTestSuite {
         sudokuBoard.setElementValue(8, 1, 1);
 
         //When
-        boolean validateResult = new Validator(sudokuBoard).validate();
+        boolean validateResult = new Validator().validate(sudokuBoard);
 
         //Then
         assertTrue(validateResult);
@@ -42,7 +42,7 @@ public class ValidatorTestSuite {
         sudokuBoard.setElementValue(1, 1, 1);
 
         //When
-        boolean validateResult = new Validator(sudokuBoard).validate();
+        boolean validateResult = new Validator().validate(sudokuBoard);
 
         //Then
         assertFalse(validateResult);
