@@ -36,9 +36,14 @@ public class SudokuElement {
     }
 
     void setValue(int value) {
-        this.value = value;
-        isEmpty = false;
-        possibleValues.clear();
+        if (value != -1) {
+
+            this.value = value;
+            isEmpty = false;
+            possibleValues.clear();
+        } else {
+            this.value = value;
+        }
     }
 
     @Override
