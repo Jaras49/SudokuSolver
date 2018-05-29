@@ -3,6 +3,7 @@ package com.sudoku.solver.random.generator;
 import com.sudoku.board.elements.SudokuBoard;
 import com.sudoku.board.elements.SudokuElement;
 import com.sudoku.board.elements.SudokuRow;
+import com.sudoku.solver.check.exception.InvalidSudokuException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +12,12 @@ import java.util.Set;
 
 public class RandomValueGenerator {
 
-    public RandomValue generateRandomValue(SudokuBoard board) {
+    public RandomValue generateRandomValue(SudokuBoard board) throws InvalidSudokuException {
 
         return takeOneRandomValue(findAllEmptySudokuElements(board));
     }
 
-    private List<RandomValue> findAllEmptySudokuElements(SudokuBoard board) {
+    private List<RandomValue> findAllEmptySudokuElements(SudokuBoard board) throws InvalidSudokuException {
 
         List<RandomValue> randomValues = new ArrayList<>();
 
@@ -34,6 +35,9 @@ public class RandomValueGenerator {
 
                     Set<Integer> possibleValues = sudokuElement.getPossibleValues();
 
+                    if (possibleValues.size() == 0) {
+                        throw new InvalidSudokuException();
+                    }
                     RandomValue randomValue = new RandomValue(i, j, takeOneValueFromPossibleValues(possibleValues));
                     randomValues.add(randomValue);
                 }

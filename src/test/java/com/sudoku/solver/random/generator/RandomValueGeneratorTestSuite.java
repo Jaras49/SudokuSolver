@@ -2,6 +2,7 @@ package com.sudoku.solver.random.generator;
 
 import com.sudoku.board.SudokuBoardInitializer;
 import com.sudoku.board.elements.SudokuBoard;
+import com.sudoku.solver.check.exception.InvalidSudokuException;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -9,7 +10,7 @@ import static org.junit.Assert.*;
 public class RandomValueGeneratorTestSuite {
 
     @Test
-    public void shouldGenerateRandomValue() {
+    public void shouldGenerateRandomValue() throws InvalidSudokuException {
 
         //Given
         RandomValueGenerator generator = new RandomValueGenerator();
