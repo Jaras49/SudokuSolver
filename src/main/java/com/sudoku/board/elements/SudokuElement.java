@@ -43,6 +43,9 @@ public class SudokuElement {
             possibleValues.clear();
         } else {
             this.value = value;
+            isEmpty = true;
+            IntStream.range(0, 10)
+                    .forEach(n -> possibleValues.add(n));
         }
     }
 
