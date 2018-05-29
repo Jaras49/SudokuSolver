@@ -16,12 +16,6 @@ public class BackTrack {
         this.guessedValue = guessedValue;
     }
 
-    public BackTrack(SudokuBoard board) {
-        this.board = board;
-        this.rowIndex = -1;
-        this.elementIndex = -1;
-        this.guessedValue = -1;
-    }
     public SudokuBoard getBoard() {
         return board;
     }
