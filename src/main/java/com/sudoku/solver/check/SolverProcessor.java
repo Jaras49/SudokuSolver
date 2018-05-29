@@ -10,6 +10,10 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * @deprecated
+ * This class id deprecated and is going to be deleted when not needed
+ */
 public class SolverProcessor {
 
     private SudokuBoard board;

@@ -15,6 +15,11 @@ import com.sudoku.validator.Validator;
 import java.util.*;
 import java.util.stream.IntStream;
 //TODO this is POC, need to refactor this code
+
+/**
+ * @deprecated
+ * this class is POC and is going to be deleted when not needed
+ */
 public class Solver {
 
     private SudokuBoard board;
@@ -73,7 +78,11 @@ public class Solver {
                     }
                     if (checkStatus(clonedBoard) && !isSolved()) {
 
+                        try {
                             generateValue();
+                        } catch (InvalidSudokuException e) {
+                            error();
+                        }
 
                         if (!validator.validate(board)) {
                             System.out.println("GUESS INVALID");
@@ -124,7 +133,7 @@ public class Solver {
         }
     }
 
-    private void generateValue() throws CloneNotSupportedException {
+    private void generateValue() throws CloneNotSupportedException, InvalidSudokuException {
 
         int guessedValue = -1;
         int rowIndex = -1;
