@@ -2,10 +2,7 @@ package com.sudoku.board.elements;
 
 import com.sudoku.board.elements.prototype.Prototype;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.IntStream;
 
 public class SudokuBoard extends Prototype {
@@ -46,8 +43,7 @@ public class SudokuBoard extends Prototype {
                 for (Integer possibleValue : possibleValues) {
                     clonedBoard.sudokuRows.get(i).getSudokuElements().get(j).getPossibleValues().add(possibleValue);
                 }
-                    clonedBoard.sudokuRows.get(i).getSudokuElements().get(j).setValue(value);
-
+                clonedBoard.sudokuRows.get(i).getSudokuElements().get(j).setValue(value);
             }
         }
         return clonedBoard;
@@ -55,6 +51,38 @@ public class SudokuBoard extends Prototype {
 
     public void setElementValue(int rowIndex, int elementIndex, int value) {
         sudokuRows.get(rowIndex).getSudokuElements().get(elementIndex).setValue(value);
+        removeFromPossibleValues(rowIndex, elementIndex, value);
+    }
+
+    private void removeFromPossibleValues(int rowIndex, int elementIndex, int value) {
+
+        removeFromRowPossibleValues(rowIndex, value);
+        removeFromColumnPossibleValues(elementIndex, value);
+        removeFromBlockPossibleValues(rowIndex, elementIndex, value);
+
+    }
+
+    private void removeFromRowPossibleValues(int rowIndex, int value) {
+
+        sudokuRows.get(rowIndex).getSudokuElements()
+                .forEach(n -> n.getPossibleValues().remove(value));
+    }
+
+    private void removeFromColumnPossibleValues(int elementIndex, int value) {
+
+        sudokuRows.stream()
+                .map(n -> n.getSudokuElements().get(elementIndex))
+                .forEach(n -> n.getPossibleValues().remove(value));
+    }
+
+    private void removeFromBlockPossibleValues(int rowIndex, int elementIndex, int value) {
+
+        Block blockY = Block.evaluateBlock(rowIndex);
+        Block blockX = Block.evaluateBlock(elementIndex);
+
+        Arrays.stream(blockY.getPossibleValues())
+                .forEach(i -> Arrays.stream(blockX.getPossibleValues())
+                        .forEach(j -> sudokuRows.get(i).getSudokuElements().get(j).getPossibleValues().remove(value)));
     }
 
     @Override
