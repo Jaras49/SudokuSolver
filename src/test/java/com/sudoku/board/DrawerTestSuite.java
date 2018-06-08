@@ -74,12 +74,12 @@ public class DrawerTestSuite {
                 "|   |   |   |   |   |   |   |   |   |\n" +
                 "+---+---+---+---+---+---+---+---+---+\n";
 
-        board.getSudokuRows().get(2).getSudokuElements().get(2).setValue(7);
-        board.getSudokuRows().get(5).getSudokuElements().get(6).setValue(5);
-        board.getSudokuRows().get(6).getSudokuElements().get(4).setValue(5);
-        board.getSudokuRows().get(7).getSudokuElements().get(8).setValue(2);
-        board.getSudokuRows().get(1).getSudokuElements().get(1).setValue(5);
-        board.getSudokuRows().get(3).getSudokuElements().get(5).setValue(5);
+        board.setElementValue(2, 2, 7);
+        board.setElementValue(5, 6, 5);
+        board.setElementValue(6, 4, 5);
+        board.setElementValue(7, 8, 2);
+        board.setElementValue(1, 1, 5);
+        board.setElementValue(3, 5, 5);
 
         //When
         String drawedBoard = drawer.draw(board);

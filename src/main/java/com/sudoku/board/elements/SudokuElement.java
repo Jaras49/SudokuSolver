@@ -35,10 +35,18 @@ public class SudokuElement {
         return isEmpty;
     }
 
-    public void setValue(int value) {
-        this.value = value;
-        isEmpty = false;
-        possibleValues.clear();
+    void setValue(int value) {
+        if (value != -1) {
+
+            this.value = value;
+            isEmpty = false;
+            possibleValues.clear();
+        } else {
+            this.value = value;
+            isEmpty = true;
+            IntStream.range(1, 10)
+                    .forEach(n -> possibleValues.add(n));
+        }
     }
 
     @Override

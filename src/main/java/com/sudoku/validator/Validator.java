@@ -11,12 +11,8 @@ public class Validator {
 
     private SudokuBoard sudokuBoard;
 
-    public Validator(SudokuBoard sudokuBoard) {
-
-        this.sudokuBoard = sudokuBoard;
-    }
-
-    public boolean validate() {
+    public boolean validate(SudokuBoard board) {
+        this.sudokuBoard = board;
         List<SudokuRow> sudokuRows = sudokuBoard.getSudokuRows();
 
         for (int i = 0; i < sudokuRows.size(); i++) {
