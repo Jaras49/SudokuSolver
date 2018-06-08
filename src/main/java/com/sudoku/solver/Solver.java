@@ -163,7 +163,7 @@ public class Solver {
     }
 
     private void saveBackTrack() throws CloneNotSupportedException {
-        backTracks2.add(new BackTrack(board.deepCopy()));
+        //backTracks2.add(new BackTrack(board.deepCopy()));
     }
 
     private void error() {
