@@ -9,7 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-
+/**
+ * @deprecated
+ * This class is deprecated
+ */
 public class RandomValueGenerator {
 
     public RandomValue generateRandomValue(SudokuBoard board) throws InvalidSudokuException {

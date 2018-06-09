@@ -11,7 +11,10 @@ import com.sudoku.validator.Validator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
+/**
+ * @deprecated
+ * This class is deprecated
+ */
 public class SolverService {
 
     private SudokuBoard board;
