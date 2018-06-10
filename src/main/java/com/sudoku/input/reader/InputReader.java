@@ -13,9 +13,7 @@ public class InputReader {
 
     public String getInput() {
 
-        String input = sc.nextLine();
-        sc.close();
+        return sc.nextLine();
 
-        return input;
     }
 }
