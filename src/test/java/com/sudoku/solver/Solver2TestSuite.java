@@ -11,7 +11,7 @@ import static org.junit.Assert.*;
 public class Solver2TestSuite {
 
     @Test
-    public void shouldFindSolution() throws CloneNotSupportedException {
+    public void shouldFindSolution() {
 
         //Given
         Solver2 solver = new Solver2();
@@ -93,7 +93,5 @@ public class Solver2TestSuite {
 
         //Then
         assertTrue(new Validator().validate(solvedBoard));
-
-
     }
 }
