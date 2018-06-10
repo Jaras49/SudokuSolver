@@ -1,5 +1,9 @@
 package com.sudoku.solver.random.generator;
 
+/**
+ * @deprecated
+ * This class is deprecated
+ */
 public final class RandomValue {
 
     private final int rowIndex;

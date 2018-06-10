@@ -1,7 +1,10 @@
 package com.sudoku.solver.backtrack;
 
 import com.sudoku.board.elements.SudokuBoard;
-
+/**
+ * @deprecated
+ * This class is deprecated
+ */
 public class BackTrack {
 
     private final SudokuBoard board;
