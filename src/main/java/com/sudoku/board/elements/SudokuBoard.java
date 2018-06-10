@@ -1,11 +1,9 @@
 package com.sudoku.board.elements;
 
-import com.sudoku.board.elements.prototype.Prototype;
-
 import java.util.*;
 import java.util.stream.IntStream;
 
-public class SudokuBoard extends Prototype {
+public class SudokuBoard {
 
     private List<SudokuRow> sudokuRows;
 
