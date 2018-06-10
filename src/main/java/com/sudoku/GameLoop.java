@@ -40,7 +40,7 @@ public class GameLoop {
         drawer.draw(board);
 
         boolean stop = false;
-        while(!stop) {
+        while (!stop) {
 
             printOptions();
 
@@ -50,23 +50,21 @@ public class GameLoop {
             } else if ("solve".equalsIgnoreCase(input)) {
                 solve(board);
                 tryAgain();
-            }
-            else if ("reset".equalsIgnoreCase(input)) {
+            } else if ("reset".equalsIgnoreCase(input)) {
                 board = sudokuBoardInitializer.createBoard(9);
                 firstRun = true;
                 printOptions();
             } else if ("V".equalsIgnoreCase(input)) {
                 if (validator.validate(board)) {
                     System.out.println("Sudoku is valid :)");
-                }
-                else {
+                } else {
                     throw new InvalidSudokuException();
                 }
             } else {
                 try {
                     String handledInput = inputHandler.handleInput(input);
                     setInputToBoard(handledInput);
-                } catch (InvalidInputException e) {
+                } catch (InvalidInputException | IndexOutOfBoundsException e) {
                     System.out.println("Invalid input , try again \n");
                 }
             }
@@ -128,14 +126,19 @@ public class GameLoop {
     }
 
     private void tryAgain() {
-        System.out.println("Try again ?? Y/N ??");
 
-        String input = inputReader.getInput();
-        if ("Y".equalsIgnoreCase(input)) {
-            board = sudokuBoardInitializer.createBoard(9);
-            firstRun = true;
-        } else {
-            System.exit(1);
+        boolean proceed = false;
+        while (!proceed) {
+            System.out.println("Try again ?? Y/N ??");
+
+            String input = inputReader.getInput();
+            if ("Y".equalsIgnoreCase(input)) {
+                board = sudokuBoardInitializer.createBoard(9);
+                firstRun = true;
+                proceed = true;
+            } else if ("N".equalsIgnoreCase(input)) {
+                System.exit(1);
+            }
         }
     }
 }
