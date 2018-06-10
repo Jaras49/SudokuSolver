@@ -33,53 +33,16 @@ public class Solver2 {
                         if (validator.validate(this.board) && findSolution(this.board)) {
                             return true;
                         }
-                        this.board.setElementValue(i, j , EMPTY);
+                        this.board.setElementValue(i, j, EMPTY);
                     }
                     return false;
                 }
-
             }
         }
         return true;
     }
 
-    private boolean isSolved(SudokuBoard board) {
-
-        List<SudokuRow> sudokuRows = board.getSudokuRows();
-
-        int count = (int) sudokuRows.stream()
-                .flatMap(n -> n.getSudokuElements().stream())
-                .filter(SudokuElement::isEmpty)
-                .count();
-
-        return count == 0;
-    }
-
-    private boolean isValid(SudokuBoard board) {
-
-        return false;
-    }
-
-    private boolean check(SudokuBoard board, int rowIndex, int elementIndex, boolean[] constraint) {
-
-        //board.getSudokuRows().get(rowIndex)
-        //if (!constraint[board])
-        return false;
-    }
-
-    private boolean isRowValid(SudokuBoard board, int rowIndex) {
-
-        return false;
-    }
-
     public SudokuBoard getBoard() {
         return board;
-    }
-
-    public void findAllSolutions(SudokuBoard board) {
-
-        this.board = board;
-
-
     }
 }
