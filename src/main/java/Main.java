@@ -9,6 +9,8 @@ import com.sudoku.validator.Validator;
 
 public class Main {
 
+    private static final String VERISON = "1.0";
+
     public static void main(String[] args) {
 
         Drawer drawer = new Drawer();
