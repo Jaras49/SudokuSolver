@@ -22,6 +22,12 @@ public class SudokuBoard extends Prototype {
         return sudokuRows;
     }
 
+    public void setElementValue(int rowIndex, int elementIndex, int value) {
+
+        sudokuRows.get(rowIndex).getSudokuElements().get(elementIndex).setValue(value);
+    }
+
+    @Deprecated
     public SudokuBoard deepCopy() throws CloneNotSupportedException {
 
         SudokuBoard clonedBoard = (SudokuBoard) super.clone();
@@ -49,64 +55,6 @@ public class SudokuBoard extends Prototype {
             }
         }
         return clonedBoard;
-    }
-
-    public void setElementValue(int rowIndex, int elementIndex, int value) {
-        if (!sudokuRows.get(rowIndex).getSudokuElements().get(elementIndex).isEmpty()) {
-            System.out.println("NOT EMPTY FIELD");
-        }
-        sudokuRows.get(rowIndex).getSudokuElements().get(elementIndex).setValue(value);
-        removeFromPossibleValues(rowIndex, elementIndex, value);
-    }
-
-    private void removeFromPossibleValues(int rowIndex, int elementIndex, int value) {
-
-        removeFromRowPossibleValues(rowIndex, value);
-        removeFromColumnPossibleValues(elementIndex, value);
-        removeFromBlockPossibleValues(rowIndex, elementIndex, value);
-
-    }
-
-    private void removeFromRowPossibleValues(int rowIndex, int value) {
-
-        List<SudokuElement> sudokuElements = sudokuRows.get(rowIndex).getSudokuElements();
-
-        for (int i = 0; i < sudokuElements.size(); i++) {
-            sudokuElements.get(i).getPossibleValues().remove(value);
-        }
-
-        //sudokuRows.get(rowIndex).getSudokuElements()
-        //.forEach(n -> n.getPossibleValues().remove(value));
-    }
-
-    private void removeFromColumnPossibleValues(int elementIndex, int value) {
-
-        for (int i = 0; i < sudokuRows.size(); i++) {
-            sudokuRows.get(i).getSudokuElements().get(elementIndex).getPossibleValues().remove(value);
-        }
-        // sudokuRows.stream()
-        // .map(n -> n.getSudokuElements().get(elementIndex))
-        // .forEach(n -> n.getPossibleValues().remove(value));
-    }
-
-    private void removeFromBlockPossibleValues(int rowIndex, int elementIndex, int value) {
-
-
-        Block blockY = Block.evaluateBlock(rowIndex);
-        Block blockX = Block.evaluateBlock(elementIndex);
-
-        for (int i : blockY.getPossibleValues()) {
-
-            for (int j : blockX.getPossibleValues()) {
-
-                sudokuRows.get(i).getSudokuElements().get(j).getPossibleValues().remove(value);
-            }
-        }
-
-
-       // Arrays.stream(blockY.getPossibleValues())
-               // .forEach(i -> Arrays.stream(blockX.getPossibleValues())
-                       // .forEach(j -> sudokuRows.get(i).getSudokuElements().get(j).getPossibleValues().remove(value)));
     }
 
     @Override
