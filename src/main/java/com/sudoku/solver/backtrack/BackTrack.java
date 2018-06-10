@@ -3,7 +3,7 @@ package com.sudoku.solver.backtrack;
 import com.sudoku.board.elements.SudokuBoard;
 /**
  * @deprecated
- * This class is deprecated
+ * This class is deprecated due to refactor of solving mechanism
  */
 public class BackTrack {
 
