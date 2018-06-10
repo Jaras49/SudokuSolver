@@ -1,4 +1,4 @@
-package com.sudoku.solver.check.exception;
+package com.sudoku.solver;
 
 public class InvalidSudokuException extends Exception {
 }

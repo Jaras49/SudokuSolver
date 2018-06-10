@@ -27,36 +27,6 @@ public class SudokuBoard extends Prototype {
         sudokuRows.get(rowIndex).getSudokuElements().get(elementIndex).setValue(value);
     }
 
-    @Deprecated
-    public SudokuBoard deepCopy() throws CloneNotSupportedException {
-
-        SudokuBoard clonedBoard = (SudokuBoard) super.clone();
-        clonedBoard.sudokuRows = new ArrayList<>();
-
-        for (int i = 0; i < sudokuRows.size(); i++) {
-
-            clonedBoard.sudokuRows.add(i, new SudokuRow());
-            List<SudokuElement> sudokuElements = sudokuRows.get(i).getSudokuElements();
-
-            for (int j = 0; j < sudokuElements.size(); j++) {
-
-                clonedBoard.sudokuRows.get(i).getSudokuElements().add(j, new SudokuElement());
-
-                int value = sudokuElements.get(j).getValue();
-
-                Set<Integer> possibleValues = sudokuElements.get(j).getPossibleValues();
-
-                clonedBoard.sudokuRows.get(i).getSudokuElements().get(j).setValue(value);
-                clonedBoard.sudokuRows.get(i).getSudokuElements().get(j).getPossibleValues().clear();
-
-                for (Integer possibleValue : possibleValues) {
-                    clonedBoard.sudokuRows.get(i).getSudokuElements().get(j).getPossibleValues().add(possibleValue);
-                }
-            }
-        }
-        return clonedBoard;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -8,7 +8,7 @@ import com.sudoku.input.handler.InputHandler;
 import com.sudoku.input.handler.InvalidInputException;
 import com.sudoku.input.reader.InputReader;
 import com.sudoku.solver.Solver2;
-import com.sudoku.solver.check.exception.InvalidSudokuException;
+import com.sudoku.solver.InvalidSudokuException;
 import com.sudoku.validator.Validator;
 
 public class GameLoop {

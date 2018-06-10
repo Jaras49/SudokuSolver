@@ -29,7 +29,6 @@ public class SudokuBoardInitializerTestSuite {
 
         assertEquals(-1, sudokuBoard.getSudokuRows().get(1).getSudokuElements().get(8).getValue());
         assertEquals(2, sudokuBoard.getSudokuRows().get(1).getSudokuElements().get(1).getValue());
-        assertEquals(new HashSet<>(Arrays.asList()),
-                sudokuBoard.getSudokuRows().get(1).getSudokuElements().get(1).getPossibleValues());
+
     }
 }
