@@ -23,7 +23,6 @@ public class GameLoop {
 
     private SudokuBoard board;
 
-
     public GameLoop(Drawer drawer, InputReader inputReader, InputHandler inputHandler,
                     SudokuBoardInitializer sudokuBoardInitializer, Solver2 solver, Validator validator) {
         this.drawer = drawer;
@@ -31,7 +30,7 @@ public class GameLoop {
         this.inputHandler = inputHandler;
         this.sudokuBoardInitializer = sudokuBoardInitializer;
         this.solver = solver;
-        this.validator = new Validator();
+        this.validator = validator;
         firstRun = true;
     }
 
@@ -50,7 +49,7 @@ public class GameLoop {
                 stop = true;
             } else if ("solve".equalsIgnoreCase(input)) {
                 solve(board);
-                stop = true;
+                tryAgain();
             }
             else if ("reset".equalsIgnoreCase(input)) {
                 board = sudokuBoardInitializer.createBoard(9);
@@ -128,8 +127,15 @@ public class GameLoop {
         }
     }
 
-    private void restartGame() {
+    private void tryAgain() {
+        System.out.println("Try again ?? Y/N ??");
 
-
+        String input = inputReader.getInput();
+        if ("Y".equalsIgnoreCase(input)) {
+            board = sudokuBoardInitializer.createBoard(9);
+            firstRun = true;
+        } else {
+            System.exit(1);
+        }
     }
 }
