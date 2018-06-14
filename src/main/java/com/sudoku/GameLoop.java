@@ -23,7 +23,7 @@ public class GameLoop {
 
     private SudokuBoard board;
 
-    public GameLoop(Drawer drawer, InputReader inputReader, InputHandler inputHandler,
+    private GameLoop(Drawer drawer, InputReader inputReader, InputHandler inputHandler,
                     SudokuBoardInitializer sudokuBoardInitializer, Solver2 solver, Validator validator) {
         this.drawer = drawer;
         this.inputReader = inputReader;
@@ -31,7 +31,7 @@ public class GameLoop {
         this.sudokuBoardInitializer = sudokuBoardInitializer;
         this.solver = solver;
         this.validator = validator;
-        firstRun = true;
+        this.firstRun = true;
     }
 
     public void controlLoop() throws InvalidSudokuException {
@@ -139,6 +139,57 @@ public class GameLoop {
             } else if ("N".equalsIgnoreCase(input)) {
                 System.exit(1);
             }
+        }
+    }
+
+    public static class GameLoopBuilder {
+
+        private Drawer drawer;
+        private InputReader inputReader;
+        private InputHandler inputHandler;
+        private SudokuBoardInitializer sudokuBoardInitializer;
+        private Solver2 solver;
+        private Validator validator;
+
+        public GameLoopBuilder drawer(Drawer drawer) {
+            this.drawer = drawer;
+            return this;
+        }
+
+        public GameLoopBuilder inputReader(InputReader inputReader) {
+            this.inputReader = inputReader;
+            return this;
+        }
+
+        public GameLoopBuilder inputHandler(InputHandler inputHandler) {
+            this.inputHandler = inputHandler;
+            return this;
+        }
+
+        public GameLoopBuilder sudokuBoardInitializer(SudokuBoardInitializer sudokuBoardInitializer) {
+            this.sudokuBoardInitializer = sudokuBoardInitializer;
+            return this;
+        }
+
+        public GameLoopBuilder solver(Solver2 solver) {
+            this.solver = solver;
+            return this;
+        }
+
+        public GameLoopBuilder validator(Validator validator) {
+            this.validator = validator;
+            return this;
+        }
+
+        public GameLoop build() {
+            return new GameLoop(
+                    this.drawer,
+                    this.inputReader,
+                    this.inputHandler,
+                    this.sudokuBoardInitializer,
+                    this.solver,
+                    this.validator
+            );
         }
     }
 }

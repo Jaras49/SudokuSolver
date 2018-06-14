@@ -9,23 +9,27 @@ import com.sudoku.validator.Validator;
 
 public class Main {
 
-    private static final String VERISON = "1.0";
+    private static final String VERSION = "1.0";
+
+    private void run(){
+
+        try {
+            new GameLoop.GameLoopBuilder()
+                    .drawer(new Drawer())
+                    .inputHandler(new InputHandler())
+                    .inputReader(new InputReader())
+                    .solver(new Solver2())
+                    .sudokuBoardInitializer(new SudokuBoardInitializer())
+                    .validator(new Validator())
+                    .build().controlLoop();
+        } catch (InvalidSudokuException e) {
+            System.out.println("THIS SUDOKU IS INVALID");
+        }
+    }
 
     public static void main(String[] args) {
 
-        Drawer drawer = new Drawer();
-        InputReader inputReader = new InputReader();
-        InputHandler inputHandler = new InputHandler();
-        SudokuBoardInitializer boardInitializer = new SudokuBoardInitializer();
-        Solver2 solver = new Solver2();
-        Validator validator = new Validator();
-
-        GameLoop sudoku = new GameLoop(drawer, inputReader, inputHandler, boardInitializer, solver, validator);
-
-        try {
-            sudoku.controlLoop();
-        } catch (InvalidSudokuException e) {
-            System.out.println("THIS SUDOKU IS INVALID !!!!");
-        }
+        Main main = new Main();
+        main.run();
     }
 }
