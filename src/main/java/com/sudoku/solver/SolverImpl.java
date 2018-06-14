@@ -7,13 +7,13 @@ import com.sudoku.validator.Validator;
 
 import java.util.List;
 
-public class Solver2 implements Solver {
+public class SolverImpl implements Solver {
 
     private static final int EMPTY = -1;
     private Validator validator;
     private SudokuBoard board;
 
-    public Solver2(Validator validator) {
+    public SolverImpl(Validator validator) {
         this.validator = validator;
     }
 

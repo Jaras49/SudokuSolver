@@ -3,7 +3,7 @@ import com.sudoku.board.Drawer;
 import com.sudoku.board.SudokuBoardInitializer;
 import com.sudoku.input.handler.InputHandler;
 import com.sudoku.input.reader.InputReader;
-import com.sudoku.solver.Solver2;
+import com.sudoku.solver.SolverImpl;
 import com.sudoku.solver.InvalidSudokuException;
 import com.sudoku.validator.Validator;
 
@@ -19,7 +19,7 @@ public class Main {
                     .drawer(new Drawer())
                     .inputHandler(new InputHandler())
                     .inputReader(new InputReader())
-                    .solver(new Solver2(new Validator()))
+                    .solver(new SolverImpl(new Validator()))
                     .sudokuBoardInitializer(new SudokuBoardInitializer())
                     .validator(new Validator())
                     .build().controlLoop();

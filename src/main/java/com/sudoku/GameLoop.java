@@ -7,7 +7,7 @@ import com.sudoku.input.handler.InputHandler;
 import com.sudoku.input.handler.InvalidInputException;
 import com.sudoku.input.reader.InputReader;
 import com.sudoku.solver.Solver;
-import com.sudoku.solver.Solver2;
+import com.sudoku.solver.SolverImpl;
 import com.sudoku.solver.InvalidSudokuException;
 import com.sudoku.validator.Validator;
 
@@ -35,7 +35,7 @@ public class GameLoop {
     private SudokuBoard board;
 
     private GameLoop(Drawer drawer, InputReader inputReader, InputHandler inputHandler,
-                    SudokuBoardInitializer sudokuBoardInitializer, Solver2 solver, Validator validator) {
+                     SudokuBoardInitializer sudokuBoardInitializer, SolverImpl solver, Validator validator) {
         this.drawer = drawer;
         this.inputReader = inputReader;
         this.inputHandler = inputHandler;
@@ -159,7 +159,7 @@ public class GameLoop {
         private InputReader inputReader;
         private InputHandler inputHandler;
         private SudokuBoardInitializer sudokuBoardInitializer;
-        private Solver2 solver;
+        private SolverImpl solver;
         private Validator validator;
 
         public GameLoopBuilder drawer(Drawer drawer) {
@@ -182,7 +182,7 @@ public class GameLoop {
             return this;
         }
 
-        public GameLoopBuilder solver(Solver2 solver) {
+        public GameLoopBuilder solver(SolverImpl solver) {
             this.solver = solver;
             return this;
         }

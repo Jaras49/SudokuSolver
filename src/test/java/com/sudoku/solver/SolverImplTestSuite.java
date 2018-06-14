@@ -8,14 +8,14 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class Solver2TestSuite {
+public class SolverImplTestSuite {
 
     @Test
     public void shouldFindSolution() {
 
         //Given
         Validator validator = new Validator();
-        Solver2 solver = new Solver2(validator);
+        SolverImpl solver = new SolverImpl(validator);
         SudokuBoard board = new SudokuBoardInitializer().createBoard(9);
         board.setElementValue(0,0, 5);
         board.setElementValue(0,2, 4);
@@ -35,7 +35,7 @@ public class Solver2TestSuite {
 
         //Given
         Validator validator = new Validator();
-        Solver2 solver = new Solver2(validator);
+        SolverImpl solver = new SolverImpl(validator);
         SudokuBoard board = new SudokuBoardInitializer().createBoard(9);
 
         board.setElementValue(0, 0, 8);
@@ -88,11 +88,11 @@ public class Solver2TestSuite {
         //Given
         Validator validator = new Validator();
         SudokuBoard board = new SudokuBoardInitializer().createBoard(9);
-        Solver2 solver2 = new Solver2(validator);
+        SolverImpl solverImpl = new SolverImpl(validator);
 
         //When
-        solver2.findSolution(board);
-        SudokuBoard solvedBoard = solver2.getBoard();
+        solverImpl.findSolution(board);
+        SudokuBoard solvedBoard = solverImpl.getBoard();
 
         //Then
         assertTrue(validator.validate(solvedBoard));
