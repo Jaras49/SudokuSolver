@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class InputHandler {
 
-    private static final String VALIDATOR_PATTERN = "(\\s*\\d\\s*,\\s*\\d\\s*,\\s*\\d\\s*)+";
+    private static final String VALIDATOR_PATTERN = "(\\s*\\d\\s*,\\s*\\d\\s*,\\s*\\d\\s*){1,9}";
     private static final String REPLACE_REGEX = " ";
     private static final String REPLACEMENT = "";
 
