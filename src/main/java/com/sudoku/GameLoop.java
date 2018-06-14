@@ -6,6 +6,7 @@ import com.sudoku.board.elements.SudokuBoard;
 import com.sudoku.input.handler.InputHandler;
 import com.sudoku.input.handler.InvalidInputException;
 import com.sudoku.input.reader.InputReader;
+import com.sudoku.solver.Solver;
 import com.sudoku.solver.Solver2;
 import com.sudoku.solver.InvalidSudokuException;
 import com.sudoku.validator.Validator;
@@ -27,7 +28,7 @@ public class GameLoop {
     private final InputReader inputReader;
     private final InputHandler inputHandler;
     private final SudokuBoardInitializer sudokuBoardInitializer;
-    private final Solver2 solver;
+    private final Solver solver;
     private final Validator validator;
 
     private boolean firstRun;
