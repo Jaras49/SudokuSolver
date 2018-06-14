@@ -5,11 +5,12 @@ import com.sudoku.board.SudokuBoardInitializer;
 import com.sudoku.board.elements.SudokuBoard;
 import com.sudoku.input.handler.InputHandler;
 import com.sudoku.input.handler.InvalidInputException;
-import com.sudoku.input.reader.InputReader;
 import com.sudoku.solver.Solver;
 import com.sudoku.solver.SolverImpl;
 import com.sudoku.solver.InvalidSudokuException;
 import com.sudoku.validator.Validator;
+
+import java.util.Scanner;
 
 public class GameLoop {
 
@@ -25,23 +26,24 @@ public class GameLoop {
     private static final String SPLIT_REGEX = ",";
 
     private final Drawer drawer;
-    private final InputReader inputReader;
     private final InputHandler inputHandler;
     private final SudokuBoardInitializer sudokuBoardInitializer;
     private final Solver solver;
     private final Validator validator;
 
+    private final Scanner sc;
+
     private boolean firstRun;
     private SudokuBoard board;
 
-    private GameLoop(Drawer drawer, InputReader inputReader, InputHandler inputHandler,
+    private GameLoop(Drawer drawer, InputHandler inputHandler,
                      SudokuBoardInitializer sudokuBoardInitializer, SolverImpl solver, Validator validator) {
         this.drawer = drawer;
-        this.inputReader = inputReader;
         this.inputHandler = inputHandler;
         this.sudokuBoardInitializer = sudokuBoardInitializer;
         this.solver = solver;
         this.validator = validator;
+        this.sc = new Scanner(System.in);
         this.firstRun = true;
     }
 
@@ -55,7 +57,7 @@ public class GameLoop {
 
             printOptions();
 
-            String input = inputReader.getInput();
+            String input = sc.nextLine();
             if (STOP.equalsIgnoreCase(input)) {
                 stop = true;
             } else if (SOLVE.equalsIgnoreCase(input)) {
@@ -76,7 +78,7 @@ public class GameLoop {
                     String handledInput = inputHandler.handleInput(input);
                     setInputToBoard(handledInput);
                 } catch (InvalidInputException | IndexOutOfBoundsException e) {
-                    System.out.println(INVALID_INPUT);
+                    System.err.println(INVALID_INPUT);
                 }
             }
             System.out.println(drawer.draw(board));
@@ -142,7 +144,7 @@ public class GameLoop {
         while (!proceed) {
             System.out.println(TRY_AGAIN);
 
-            String input = inputReader.getInput();
+            String input = sc.nextLine();
             if (YES.equalsIgnoreCase(input)) {
                 board = sudokuBoardInitializer.createBoard(9);
                 firstRun = true;
@@ -156,7 +158,6 @@ public class GameLoop {
     public static class GameLoopBuilder {
 
         private Drawer drawer;
-        private InputReader inputReader;
         private InputHandler inputHandler;
         private SudokuBoardInitializer sudokuBoardInitializer;
         private SolverImpl solver;
@@ -164,11 +165,6 @@ public class GameLoop {
 
         public GameLoopBuilder drawer(Drawer drawer) {
             this.drawer = drawer;
-            return this;
-        }
-
-        public GameLoopBuilder inputReader(InputReader inputReader) {
-            this.inputReader = inputReader;
             return this;
         }
 
@@ -195,7 +191,6 @@ public class GameLoop {
         public GameLoop build() {
             return new GameLoop(
                     this.drawer,
-                    this.inputReader,
                     this.inputHandler,
                     this.sudokuBoardInitializer,
                     this.solver,

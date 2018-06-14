@@ -2,7 +2,6 @@ import com.sudoku.GameLoop;
 import com.sudoku.board.Drawer;
 import com.sudoku.board.SudokuBoardInitializer;
 import com.sudoku.input.handler.InputHandler;
-import com.sudoku.input.reader.InputReader;
 import com.sudoku.solver.SolverImpl;
 import com.sudoku.solver.InvalidSudokuException;
 import com.sudoku.validator.Validator;
@@ -18,13 +17,12 @@ public class Main {
             new GameLoop.GameLoopBuilder()
                     .drawer(new Drawer())
                     .inputHandler(new InputHandler())
-                    .inputReader(new InputReader())
                     .solver(new SolverImpl(new Validator()))
                     .sudokuBoardInitializer(new SudokuBoardInitializer())
                     .validator(new Validator())
                     .build().controlLoop();
         } catch (InvalidSudokuException e) {
-            System.out.println(INVALID_SUDOKU);
+            System.err.println(INVALID_SUDOKU);
         }
     }
 
