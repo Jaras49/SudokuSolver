@@ -7,11 +7,15 @@ import com.sudoku.validator.Validator;
 
 import java.util.List;
 
-public class Solver2 {
+public class Solver2 implements Solver {
 
     private static final int EMPTY = -1;
-    private Validator validator = new Validator();
+    private Validator validator;
     private SudokuBoard board;
+
+    public Solver2(Validator validator) {
+        this.validator = validator;
+    }
 
     public boolean findSolution(SudokuBoard board) {
 

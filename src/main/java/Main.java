@@ -12,14 +12,14 @@ public class Main {
     private static final String VERSION = "1.0";
     private static final String INVALID_SUDOKU = "THIS SUDOKU IS INVALID";
 
-    private void run(){
+    private void run() {
 
         try {
             new GameLoop.GameLoopBuilder()
                     .drawer(new Drawer())
                     .inputHandler(new InputHandler())
                     .inputReader(new InputReader())
-                    .solver(new Solver2())
+                    .solver(new Solver2(new Validator()))
                     .sudokuBoardInitializer(new SudokuBoardInitializer())
                     .validator(new Validator())
                     .build().controlLoop();

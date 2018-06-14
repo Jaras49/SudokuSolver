@@ -14,7 +14,8 @@ public class Solver2TestSuite {
     public void shouldFindSolution() {
 
         //Given
-        Solver2 solver = new Solver2();
+        Validator validator = new Validator();
+        Solver2 solver = new Solver2(validator);
         SudokuBoard board = new SudokuBoardInitializer().createBoard(9);
         board.setElementValue(0,0, 5);
         board.setElementValue(0,2, 4);
@@ -26,14 +27,15 @@ public class Solver2TestSuite {
         System.out.println(new Drawer().draw(solvedBoard));
 
         //Then
-        assertTrue(new Validator().validate(solvedBoard));
+        assertTrue(validator.validate(solvedBoard));
     }
 
     @Test
     public void shouldSolveHardBoard() {
 
         //Given
-        Solver2 solver = new Solver2();
+        Validator validator = new Validator();
+        Solver2 solver = new Solver2(validator);
         SudokuBoard board = new SudokuBoardInitializer().createBoard(9);
 
         board.setElementValue(0, 0, 8);
@@ -68,7 +70,7 @@ public class Solver2TestSuite {
         board.setElementValue(7,8,7);
         board.setElementValue(8,7,9);
 
-        System.out.println(new Validator().validate(board));
+        System.out.println(validator.validate(board));
         System.out.println(new Drawer().draw(board));
 
         //When
@@ -77,21 +79,22 @@ public class Solver2TestSuite {
         System.out.println(new Drawer().draw(solvedBoard));
 
         //Then
-        assertTrue(new Validator().validate(solvedBoard));
+        assertTrue(validator.validate(solvedBoard));
     }
 
     @Test
     public void shouldSolveEmptySudoku() {
 
         //Given
+        Validator validator = new Validator();
         SudokuBoard board = new SudokuBoardInitializer().createBoard(9);
-        Solver2 solver2 = new Solver2();
+        Solver2 solver2 = new Solver2(validator);
 
         //When
         solver2.findSolution(board);
         SudokuBoard solvedBoard = solver2.getBoard();
 
         //Then
-        assertTrue(new Validator().validate(solvedBoard));
+        assertTrue(validator.validate(solvedBoard));
     }
 }
