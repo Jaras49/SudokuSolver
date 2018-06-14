@@ -1,6 +1,5 @@
 package com.sudoku;
 
-
 import com.sudoku.board.Drawer;
 import com.sudoku.board.SudokuBoardInitializer;
 import com.sudoku.board.elements.SudokuBoard;
@@ -13,14 +12,25 @@ import com.sudoku.validator.Validator;
 
 public class GameLoop {
 
+    private static final String STOP = "stop";
+    private static final String SOLVE = "solve";
+    private static final String V = "v";
+    private static final String RESET = "reset";
+    private static final String INVALID_INPUT = "Invalid input , try again \n";
+    private static final String VALID_SUDOKU = "Sudoku is valid :)";
+    private static final String TRY_AGAIN = "Try again ?? Y/N ??";
+    private static final String YES = "Y";
+    private static final String NO = "N";
+    private static final String SPLIT_REGEX = ",";
+
     private final Drawer drawer;
     private final InputReader inputReader;
     private final InputHandler inputHandler;
     private final SudokuBoardInitializer sudokuBoardInitializer;
     private final Solver2 solver;
     private final Validator validator;
-    private boolean firstRun;
 
+    private boolean firstRun;
     private SudokuBoard board;
 
     private GameLoop(Drawer drawer, InputReader inputReader, InputHandler inputHandler,
@@ -45,18 +55,18 @@ public class GameLoop {
             printOptions();
 
             String input = inputReader.getInput();
-            if ("stop".equalsIgnoreCase(input)) {
+            if (STOP.equalsIgnoreCase(input)) {
                 stop = true;
-            } else if ("solve".equalsIgnoreCase(input)) {
+            } else if (SOLVE.equalsIgnoreCase(input)) {
                 solve(board);
                 tryAgain();
-            } else if ("reset".equalsIgnoreCase(input)) {
+            } else if (RESET.equalsIgnoreCase(input)) {
                 board = sudokuBoardInitializer.createBoard(9);
                 firstRun = true;
                 printOptions();
-            } else if ("V".equalsIgnoreCase(input)) {
+            } else if (V.equalsIgnoreCase(input)) {
                 if (validator.validate(board)) {
-                    System.out.println("Sudoku is valid :)");
+                    System.out.println(VALID_SUDOKU);
                 } else {
                     throw new InvalidSudokuException();
                 }
@@ -65,7 +75,7 @@ public class GameLoop {
                     String handledInput = inputHandler.handleInput(input);
                     setInputToBoard(handledInput);
                 } catch (InvalidInputException | IndexOutOfBoundsException e) {
-                    System.out.println("Invalid input , try again \n");
+                    System.out.println(INVALID_INPUT);
                 }
             }
             System.out.println(drawer.draw(board));
@@ -87,10 +97,10 @@ public class GameLoop {
             System.out.println("WELCOME TO SUDOKU_SOLVER_APP");
             System.out.println("Have fun :)");
         }
-        System.out.println("Type \"STOP\" to stop game");
-        System.out.println("Type \"SOLVE\" to start solving sudoku");
-        System.out.println("Type \"V\" to check if current sudoku is valid");
-        System.out.println("Type \"RESET\" to reset board");
+        System.out.println("Type \"" + STOP + "\" to stop game");
+        System.out.println("Type \"" + SOLVE + "\" to start solving sudoku");
+        System.out.println("Type \"" + V + "\" to check if current sudoku is valid");
+        System.out.println("Type \"" + RESET + "\" to reset board");
         System.out.println("You can insert values to elements by typing 1,2,3 where 1 is row index");
         System.out.println("2 is element index and 3 is value");
         System.out.println("Inputs like 1,2,3,4,5,6 are also possible to set multiple values in one input");
@@ -99,7 +109,7 @@ public class GameLoop {
 
     private void setInputToBoard(String input) {
 
-        String[] split = input.split(",");
+        String[] split = input.split(SPLIT_REGEX);
 
         int count = 0;
         int i = 0;
@@ -129,14 +139,14 @@ public class GameLoop {
 
         boolean proceed = false;
         while (!proceed) {
-            System.out.println("Try again ?? Y/N ??");
+            System.out.println(TRY_AGAIN);
 
             String input = inputReader.getInput();
-            if ("Y".equalsIgnoreCase(input)) {
+            if (YES.equalsIgnoreCase(input)) {
                 board = sudokuBoardInitializer.createBoard(9);
                 firstRun = true;
                 proceed = true;
-            } else if ("N".equalsIgnoreCase(input)) {
+            } else if (NO.equalsIgnoreCase(input)) {
                 System.exit(1);
             }
         }

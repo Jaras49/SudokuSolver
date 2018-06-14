@@ -7,6 +7,8 @@ import java.util.regex.Pattern;
 public class InputHandler {
 
     private static final String VALIDATOR_PATTERN = "(\\s*\\d\\s*,\\s*\\d\\s*,\\s*\\d\\s*)+";
+    private static final String REPLACE_REGEX = " ";
+    private static final String REPLACEMENT = "";
 
     public String handleInput(String input) throws InvalidInputException {
 
@@ -21,6 +23,6 @@ public class InputHandler {
         if (!foundFlag) {
             throw new InvalidInputException();
         }
-        return sj.toString().replaceAll(" ", "");
+        return sj.toString().replaceAll(REPLACE_REGEX, REPLACEMENT);
     }
 }
