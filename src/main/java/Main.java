@@ -20,7 +20,7 @@ public class Main {
                     .solver(new SolverImpl(new Validator()))
                     .sudokuBoardInitializer(new SudokuBoardInitializer())
                     .validator(new Validator())
-                    .build().controlLoop();
+                    .build().startLoop();
         } catch (InvalidSudokuException e) {
             System.err.println(INVALID_SUDOKU);
         }

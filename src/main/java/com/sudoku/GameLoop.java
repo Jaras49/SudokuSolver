@@ -47,11 +47,15 @@ public class GameLoop {
         this.firstRun = true;
     }
 
-    public void controlLoop() throws InvalidSudokuException {
+    public void startLoop() throws InvalidSudokuException {
 
         board = sudokuBoardInitializer.createBoard(9);
-        drawer.draw(board);
+        System.out.println(drawer.draw(board));
 
+        controlLoop();
+    }
+
+    private void controlLoop() throws InvalidSudokuException {
         boolean stop = false;
         while (!stop) {
 
